@@ -198,6 +198,7 @@ var _ = Describe("Frrk8s controller", func() {
 						IPV6Prefixes: []string{},
 						Neighbors:    []*frr.NeighborConfig{},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 		})
@@ -229,6 +230,7 @@ var _ = Describe("Frrk8s controller", func() {
 						IPV6Prefixes: []string{},
 						Neighbors:    []*frr.NeighborConfig{},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -246,6 +248,7 @@ var _ = Describe("Frrk8s controller", func() {
 						IPV6Prefixes: []string{},
 						Neighbors:    []*frr.NeighborConfig{},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -278,6 +281,7 @@ var _ = Describe("Frrk8s controller", func() {
 						IPV6Prefixes: []string{},
 						Neighbors:    []*frr.NeighborConfig{},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -287,7 +291,8 @@ var _ = Describe("Frrk8s controller", func() {
 				return localFRR.lastConfig
 			}).Should(Equal(
 				&frr.Config{
-					Routers: []*frr.RouterConfig{},
+					Routers:     []*frr.RouterConfig{},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 		})
@@ -375,6 +380,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -412,6 +418,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -439,6 +446,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 		})
@@ -497,6 +505,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -529,6 +538,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -550,6 +560,7 @@ var _ = Describe("Frrk8s controller", func() {
 							Neighbors:    []*frr.NeighborConfig{},
 						},
 					},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 		})
@@ -623,6 +634,7 @@ var _ = Describe("Frrk8s controller", func() {
 							},
 						},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
@@ -658,6 +670,7 @@ var _ = Describe("Frrk8s controller", func() {
 							},
 						},
 					}},
+					BFDProfiles: []frr.BFDProfile{},
 				},
 			))
 
