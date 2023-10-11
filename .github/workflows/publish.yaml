@@ -78,7 +78,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            quay.io/metallb/frr-k8s
+            quay.io/fpaoline/frr-k8s
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
