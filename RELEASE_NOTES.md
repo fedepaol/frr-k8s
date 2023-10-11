@@ -1,5 +1,9 @@
 # FRRK8s Release Notes
 
+## Release v0.0.5
+
+Another release!
+
 ## Release v0.0.4
 
 Another release!
