@@ -1,7 +1,7 @@
 router bgp 64512
  no bgp default ipv4-unicast
  no bgp network import-check
- 
+
 {{- range $r := .NodesIP }}
  neighbor {{ . }} remote-as 64512
 {{- end }}
@@ -14,7 +14,7 @@ router bgp 64512
  address-family ipv4 unicast
 {{- range $r := .NodesIP }}
   neighbor {{ . }} activate
-  neighbor {{ . }} next-hop-self 
+  neighbor {{ . }} next-hop-self
+  neighbor {{ . }} route-reflector-client
 {{- end }}
  exit-address-family
-
