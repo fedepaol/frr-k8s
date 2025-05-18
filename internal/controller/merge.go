@@ -91,6 +91,8 @@ func mergeAllowedOut(r, toMerge frr.AllowedOut) (frr.AllowedOut, error) {
 		PrefixesV6: sets.List(mergedPrefixesV6),
 	}
 
+	for _, p := range r.LocalPrefPrefixesModifiers {
+	}
 	for _, p := range append(res.PrefixesV4, res.PrefixesV6...) {
 		rLocalPref := r.LocalPrefForPrefix[p]
 		toMergeLocalPref := toMerge.LocalPrefForPrefix[p]

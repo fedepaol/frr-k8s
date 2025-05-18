@@ -119,7 +119,6 @@ func (a *AllowedIn) AllPrefixes() []IncomingFilter {
 type AllowedOut struct {
 	PrefixesV4                 []string
 	PrefixesV6                 []string
-	LocalPrefForPrefix         map[string]uint32
 	LocalPrefPrefixesModifiers map[string]LocalPrefPrefixList
 	CommunityPrefixesModifiers map[string]CommunityPrefixList
 }
