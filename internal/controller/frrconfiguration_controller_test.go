@@ -554,7 +554,6 @@ var _ = Describe("Frrk8s controller", func() {
 								Outgoing: frr.AllowedOut{
 									PrefixesV4:                 []string{},
 									PrefixesV6:                 []string{},
-									LocalPrefForPrefix:         nil,
 									LocalPrefPrefixesModifiers: map[string]frr.LocalPrefPrefixList{},
 									CommunityPrefixesModifiers: map[string]frr.CommunityPrefixList{},
 								},
@@ -594,7 +593,6 @@ var _ = Describe("Frrk8s controller", func() {
 								Outgoing: frr.AllowedOut{
 									PrefixesV4:                 []string{},
 									PrefixesV6:                 []string{},
-									LocalPrefForPrefix:         nil,
 									LocalPrefPrefixesModifiers: map[string]frr.LocalPrefPrefixList{},
 									CommunityPrefixesModifiers: map[string]frr.CommunityPrefixList{},
 								},

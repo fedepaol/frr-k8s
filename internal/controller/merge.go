@@ -91,13 +91,17 @@ func mergeAllowedOut(r, toMerge frr.AllowedOut) (frr.AllowedOut, error) {
 		PrefixesV6: sets.List(mergedPrefixesV6),
 	}
 
+	localPrefForPrefix := map[string]uint32{}
 	for _, p := range r.LocalPrefPrefixesModifiers {
+		for _, prefix := range p.Prefixes.UnsortedList() {
+			localPrefForPrefix[prefix] = p.LocalPref
+		}
 	}
-	for _, p := range append(res.PrefixesV4, res.PrefixesV6...) {
-		rLocalPref := r.LocalPrefForPrefix[p]
-		toMergeLocalPref := toMerge.LocalPrefForPrefix[p]
-		if rLocalPref != 0 && toMergeLocalPref != 0 && rLocalPref != toMergeLocalPref {
-			return frr.AllowedOut{}, fmt.Errorf("multiple local prefs (%d != %d) specified for prefix %s", rLocalPref, toMergeLocalPref, p)
+	for _, p := range toMerge.LocalPrefPrefixesModifiers {
+		for _, prefix := range p.Prefixes.UnsortedList() {
+			if existing, ok := localPrefForPrefix[prefix]; ok && existing != p.LocalPref {
+				return frr.AllowedOut{}, fmt.Errorf("multiple local prefs (%d != %d) specified for prefix %s", existing, p.LocalPref, prefix)
+			}
 		}
 	}
 

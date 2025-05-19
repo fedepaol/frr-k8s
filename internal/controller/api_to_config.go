@@ -266,7 +266,6 @@ func toAdvertiseToFRR(neighbor *frr.NeighborConfig, toAdvertise v1beta1.Advertis
 	}
 
 	res := frr.AllowedOut{
-		LocalPrefForPrefix:         make(map[string]uint32),
 		PrefixesV4:                 make([]string, 0),
 		PrefixesV6:                 make([]string, 0),
 		LocalPrefPrefixesModifiers: make(map[string]frr.LocalPrefPrefixList),
@@ -519,10 +518,19 @@ func validateOutgoingPrefixes(prefixesInRouter []string, routerConfig v1beta1.Ro
 		localPrefForPrefix := map[string]uint32{}
 		for _, prefixes := range n.ToAdvertise.PrefixesWithLocalPref {
 			for _, p := range prefixes.Prefixes {
+				if ipfamily.ForCIDRString(p) == ipfamily.Unknown {
+					return fmt.Errorf("unknown ipfamily for prefix %s associated to localpref %d", p, prefixes.LocalPref)
+				}
 				if existing, ok := localPrefForPrefix[p]; ok && existing != prefixes.LocalPref {
 					return fmt.Errorf("prefix %s is configured with both local preference %d and %d", prefixes.Prefixes, existing, prefixes.LocalPref)
 				}
 				localPrefForPrefix[p] = prefixes.LocalPref
+			}
+		}
+
+		for _, prefixes := range n.ToAdvertise.PrefixesWithCommunity {
+			if err := validatePrefixes(prefixes.Prefixes); err != nil {
+				return fmt.Errorf("invalid prefixes %s for community %s, err: %w", prefixes.Prefixes, prefixes.Community, err)
 			}
 		}
 	}

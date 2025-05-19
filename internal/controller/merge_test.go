@@ -999,9 +999,6 @@ func TestMergeNeighbors(t *testing.T) {
 						LocalPrefPrefixesModifiers: map[string]frr.LocalPrefPrefixList{
 							localPrefPrefixListKey(100, "ip"): localPrefPrefixListFor("65040@192.0.1.20", 100, "ip", "192.0.2.0/24"),
 						},
-						LocalPrefForPrefix: map[string]uint32{
-							"192.0.2.0/24": 100,
-						},
 					},
 				},
 			},
@@ -1016,9 +1013,6 @@ func TestMergeNeighbors(t *testing.T) {
 						CommunityPrefixesModifiers: map[string]frr.CommunityPrefixList{},
 						LocalPrefPrefixesModifiers: map[string]frr.LocalPrefPrefixList{
 							localPrefPrefixListKey(100, "ip"): localPrefPrefixListFor("65040@192.0.1.20", 150, "ip", "192.0.2.0/24"),
-						},
-						LocalPrefForPrefix: map[string]uint32{
-							"192.0.2.0/24": 150,
 						},
 					},
 				},
